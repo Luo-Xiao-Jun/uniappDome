@@ -1,0 +1,69 @@
+
+.itess {
+	margin-top: 3%;
+	width: 95%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	/* background: url(//game.gtimg.cn/images/yxzj/web201605/page/ny_con_bg.jpg) */
+	/* background-color: #99CC99; */
+	/* box-shadow: 0 8px 8px rgba(10, 16, 20, .24), 0 0 8px rgba(255,192,203); */
+	/* border: 1px solid  rgba(85, 85, 85); */
+	/* box-shadow: 0rpx 10rpx 50rpx 10rpx rgba(85, 85, 85, 0.30); */
+}
+.image-view {
+	border: 1px solid #FFCCCC;
+	/* box-shadow: 0rpx 10rpx 50rpx 10rpx rgba(255,204,204, 0.15); */
+	/* border: 1px solid #007AFF; */
+	margin: 1%;
+	width: 87px;
+	border-radius: 10px 10px 10px 10px;
+	background-color: #FFCCCC;
+}
+.uni-product-image {
+	width: 87px;
+	height: 87px;
+	/* border: 1px solid rgba(255,204,204);
+	border-radius: 0px 10px 0px 10px; */
+	border-radius: 10px 0px 10px 0px;
+}
+.name {
+	/* border: 1px solid #007AFF; */
+	text-align: center;
+	color: #FFFFFF;
+}
+.pifu {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.pifu-view {
+	width: 70px;
+	height: 70px;
+	border: 1px solid #007AFF;
+}
+.pifuimg {
+	width: 50px;
+	height: 50px;
+}
+.pifu-name {
+	font-size: 10px;
+}
+.bian {
+	border: 1px solid #007AFF;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+

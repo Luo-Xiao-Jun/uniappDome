@@ -1,0 +1,58 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "英雄信息查询",
+				"navigationBarBackgroundColor":"#FFCCCC",
+				"navigationBarTextStyle":"white", //状态栏字体颜色
+				"backgroundTextStyle":"dark",
+				"enablePullDownRefresh":true
+
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "装备查询",
+				"navigationBarBackgroundColor":"#FFCCCC",
+				"navigationBarTextStyle":"white", //状态栏字体颜色
+				"backgroundTextStyle":"dark",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/xingqin/xingqin", 
+			"style": {
+				"navigationBarTitleText": "详情页",
+				"navigationBarBackgroundColor":"#FFCCCC",
+				"navigationBarTextStyle":"white", //状态栏字体颜色
+				"backgroundTextStyle":"dark",
+				"enablePullDownRefresh":true
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "英雄信息查询",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	    "color": "#e6e6e6",
+	    "selectedColor": "#1296db",
+	    "borderStyle": "black",  
+	    "backgroundColor": "#FFCCCC",
+	    "list": [{
+	        "pagePath": "pages/index/index",
+	        "iconPath": "static/qb.png",
+	        "selectedIconPath": "static/qbxz.png",
+	        "text": "英雄信息查询"
+	    }, {
+	        "pagePath": "pages/login/login",
+	        "iconPath": "static/jq.png",
+	        "selectedIconPath": "static/jqxz.png", 
+	        "text": "装备查询"
+	    }]
+	}
+}

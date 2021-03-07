@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/xingqin/xingqin"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "英雄信息查询",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#e6e6e6",
+    "selectedColor": "#1296db",
+    "borderStyle": "black",
+    "backgroundColor": "#FFCCCC",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/qb.png",
+        "selectedIconPath": "static/qbxz.png",
+        "text": "英雄信息查询"
+      },
+      {
+        "pagePath": "pages/login/login",
+        "iconPath": "static/jq.png",
+        "selectedIconPath": "static/jqxz.png",
+        "text": "装备查询"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap4.json"
+}
