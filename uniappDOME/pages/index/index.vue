@@ -8,7 +8,7 @@
 			</view>
 		</view>
 
-		<view class="itess">
+		<view class="itess"> 
 			<view v-for="(item,index) in yx" class="image-view" :data-id="item.hero_id" @click="dianji">
 				<view>
 					<image class="uni-product-image" :src="item.cover"></image>
@@ -19,7 +19,7 @@
 
 	</view>
 </template>
-
+ 
 <script>
 	export default {
 		data() {

@@ -3,54 +3,75 @@
 		<view>
 			<view v-for="(itemzong,index) in textObj">
 				<view>
-					<image :src="xiandapifu"></image>
-					<view>
-						<view>
+				
+					<view class="one">
+							<image :src="xiandapifu" mode="scaleToFill" class="topimg"></image>
+							<view class="one-yxzil">
+						<view class="pifumz">
 							{{xianmz}}
 						</view>
-						<view>{{itemzong.name}}</view>
-						<view @click="yxzl">英雄资料</view>
-						<view v-if="yxzlbool">
-							<view @click="guan">X</view>
-							<view>{{itemzong.background_story}}</view>
+						<view class="yxmz">{{itemzong.name}}</view>
+						<view @click="yxzl()" class="yxziliao">英雄资料</view>
 						</view>
+						
 
 					</view>
-
-					<view class="pifu">
-						<view>皮肤</view>
-						<view v-for="(pifu,indexpifu) in pifus" class="pifu-view" @click="pifuitem(indexpifu)">
-							<view>
-								<image :src="pifu.big_img" class="pifuimg"></image>
+					
+					<!-- <view v-if="yxzlbool">
+						<view @click="guan">X</view>
+						<view>{{itemzong.background_story}}</view>
+					</view>
+ -->
+					<view class="two">
+						<view class="pifuview">皮肤</view>
+						
+						<scroll-view scroll-x="true" scroll-top="0" scroll-left="0" > 	
+											<view class="pifu">
+						<view v-for="(pifu,indexpifu) in pifus" class="pifu-view" @click="pifuitem(indexpifu)" >
+							<view class="imgaview">
+								<image :src="pifu.big_img" class="pifuimg" ></image>
 							</view>
 							<view class="pifu-name">{{pifu.skin_name}}</view>
 						</view>
+							</view>
+						</scroll-view >
+						
+						
 					</view>
 
-					<view>
-						<view>技能介绍</view>
-						<!-- <view> -->
+					<view class="there">
+						<view class="jinengtext">技能介绍</view>
+						<view class="jinenflex">
 						<view v-for="(jinengs,indexjineng) in jineng" @click="jinengclick(indexjineng)">
 							<view>
 								<image :src="jinengs.icon" class="pifuimg"></image>
 							</view>
 						</view>
-						<view>
-							对线技巧:{{skill_tips}}
 						</view>
+						
+						
 
 						<view>
 							{{jineng[jinengone].name}}
 						</view>
+						
+						
 
-						<view v-for="(attrsts,indexattrs) in jineng[jinengone].attrs">
+						<view v-for="(attrsts,indexattrs) in jineng[jinengone].attrs"> 
 							<view>{{attrsts}}</view>
 						</view>
+
+                     
 
 						<view>
 							{{jineng[jinengone].description}}
 						</view>
 						<!-- </view> -->
+						
+						<view class="duixianjiqiao">
+													对线技巧:{{skill_tips}}
+												</view>
+						
 					</view>
 
 
@@ -144,6 +165,7 @@
 		data() {
 			return {
 				textObj: [],
+				yxzl1:'', 
 				pifus: [], //皮肤
 				xiandapifu: '',
 				xianmz: '',
@@ -168,6 +190,8 @@
 			this.pifus = textObj.skin_imgs; //皮肤
 			this.jineng = textObj.skill_list; //技能
 			this.equip_choice = textObj.equip_choice; //出装
+			
+			this.yxzl1 = textObj.background_story; //背景故事
 			// console.log(this.jineng);
 			this.rec_inscriptions = textObj.rec_inscriptions; //符文
 			// this.be_restrained_hero = textObj.be_restrained_hero;//被克制英雄
@@ -188,7 +212,18 @@
 			yxzl() {
 				// this.yxzl = true;
 				console.log("dasdasd");
-				this.yxzlbool = !this.yxzlbool;
+				// this.yxzlbool = !this.yxzlbool;
+				uni.showModal({
+					title:'英雄资料',
+					content:this.yxzl1,
+				    success: function (res) {
+				        if (res.confirm) {
+				            console.log('用户点击确定');
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+				        }
+				    }
+				});
 			},
 			guan() {
 				this.yxzlbool = false;
@@ -289,7 +324,51 @@
 		border-radius: 10px 10px 10px 10px;
 		background-color: #FFCCCC;
 	}
-
+	.one{
+		width: 98%;
+		/* border: 1px solid #FFCCCC; */
+		border-radius: 10px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 1%;
+		position: relative;
+	}
+.topimg{
+	width: 100%;
+	border-radius: 10px;
+	
+}
+.one-yxzil{
+	/* border: 1px solid #007AFF; */
+	text-align: center;
+	border-radius: 10px;
+	width: 20%;
+	background-color: #394554;
+	/* height: 100px; */
+	/* line-height: 100px; */
+	position: absolute;
+    bottom: 5%;
+	left: 2%;
+}
+.pifumz{
+    color: #f3c258;
+	font-size: 15px;
+	margin-top: 1%;
+}
+   .yxmz{
+	color: #FFFFFF;
+	font-size: 20px;
+	margin-top: 1%;
+	}
+	.yxziliao{
+		border: 1px solid #FFFFFF;
+			color: #FFFFFF;
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 8px;
+			margin-top: 1%;
+	}
 	.uni-product-image {
 		width: 87px;
 		height: 87px;
@@ -306,27 +385,90 @@
 	}
 
 	.pifu {
+		width: 100%;
+		height: 95px;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
+		/* border: 1px solid  #4CD964; */
+		
+		/* margin-left: auto; 
+		margin-right: auto; */
+		/* overflow: hidden; */
+		
+		/* margin-right: 0px;
+	/* 	position: absolute;
+		right: 0px; */
 	}
-
+ 
 	.pifu-view {
+		/* width: 100%; */
+		height: 70px;
+		/* border: 1px solid #007AFF; */
+		margin:1%;
+		/* line-height: 50px; */
+		background-color: #FFCCCC;
+		border-radius: 10px 10px 0px 0px;
+	}
+.imgaview{
+	width: 100%;
+	height: 70px;
+	border-radius: 10px 10px 0px 0px;
+}
+	.pifuimg {
 		width: 70px;
 		height: 70px;
-		border: 1px solid #007AFF;
+		border-radius: 10px 10px 0px 0px;
 	}
 
-	.pifuimg {
-		width: 50px;
-		height: 50px;
-	}
 
 	.pifu-name {
 		font-size: 10px;
+		text-align: center;
+		/* border: 1px solid #007AFF; */
+			color: #FFFFFF;
+			background-color: #FFCCCC;
+			border-radius: 0px 0px 10px 10px;
 	}
 
 	.bian {
-		border: 1px solid #007AFF;
+		/* border: 1px solid #007AFF; */
 		display: flex;
+	}
+	.pifuview{
+		/* border: 1px solid #DD524D; */
+		padding-left: 2%;
+		color: #FFCCCC;
+		background-color: #F8F8F8;
+		border-radius: 10px 10px 0px 0px;
+	}
+	.two{
+		margin-top: 1%;
+		width: 95%;
+		border: 1px solid #F8F8F8;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 10px 10px 0px 0px;
+	}
+	
+	.there{
+		border: 1px solid #DD524D;
+		margin-top: 1%;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 10px 10px 0px 0px;
+	}
+	.jinengtext{
+		border: 1px solid #007AFF;
+		color: #FFCCCC;
+		padding-left: 2%;
+	}
+	.jinenflex{
+		display: flex;
+		justify-content: space-around;
+	}
+	.duixianjiqiao{
+		border: 1px solid #3F536E;
+		margin-top: 1%;
 	}
 </style>
