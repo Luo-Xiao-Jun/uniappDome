@@ -24,7 +24,6 @@
  -->
 					<view class="two">
 						<view class="pifuview">皮肤</view>
-						
 						<scroll-view scroll-x="true" scroll-top="0" scroll-left="0" > 	
 											<view class="pifu">
 						<view v-for="(pifu,indexpifu) in pifus" class="pifu-view" @click="pifuitem(indexpifu)" >
@@ -35,39 +34,27 @@
 						</view>
 							</view>
 						</scroll-view >
-						
-						
 					</view>
 
 					<view class="there">
 						<view class="jinengtext">技能介绍</view>
 						<view class="jinenflex">
 						<view v-for="(jinengs,indexjineng) in jineng" @click="jinengclick(indexjineng)">
-							<view>
+							<view class="jineng-img">
 								<image :src="jinengs.icon" class="pifuimg"></image>
 							</view>
 						</view>
 						</view>
-						
-						
-
-						<view>
+						<view class="jinengname">
 							{{jineng[jinengone].name}}
 						</view>
-						
-						
-
-						<view v-for="(attrsts,indexattrs) in jineng[jinengone].attrs"> 
+						<view v-for="(attrsts,indexattrs) in jineng[jinengone].attrs" class="shanghai"> 
 							<view>{{attrsts}}</view>
 						</view>
-
-                     
-
-						<view>
+						<view class="jineng">
 							{{jineng[jinengone].description}}
 						</view>
 						<!-- </view> -->
-						
 						<view class="duixianjiqiao">
 													对线技巧:{{skill_tips}}
 												</view>
@@ -76,79 +63,96 @@
 
 
 
-					<view>
-						<view>
+					<view class="si">
+						<view class="sifuwendapei">
 							符文搭配建议
 						</view>
 						<view>
 							<view v-for="(rec_inscriptionst,indexrec_inscriptions) in rec_inscriptions">
 
-								<view class="bian">
-									<view v-for="(fuwen,fuwenindex) in rec_inscriptionst.list">
-										<view>{{fuwen.name}}</view>
-										<view>{{fuwen.attrs}}</view>
+								<view class="bian1">
+									<view v-for="(fuwen,fuwenindex) in rec_inscriptionst.list" class="bian-view">
 										<view>
 											<image :src="fuwen.icon" class="pifuimg"></image>
 										</view>
+										<view class="fuwen-name"> {{fuwen.name}}</view>
+										<view class="fuwen-shuxin">{{fuwen.attrs}}</view>
+										
 									</view>
 								</view>
 							</view>
 						</view>
 					</view>
+					
 
 
-					<view>
-						<view>
-							出装推荐
+					<view class="wu">
+						<view class="chuzhuantj">
+							出装推荐:
 						</view>
-						<view>
+						<view> 
+						
+						<view class="wuone">
 							<view v-for="(equip_choicest,indexequip_choice) in equip_choice">
 								<view @click="chuzhuanclick(indexequip_choice)">{{equip_choicest.title}}</view>
-
-
+                             </view>
 							</view>
-							<view class="bian">
-								<view>{{description}}</view>
+							
+							<view >
+								<view class="wu-for">
 								<view v-for="(chuzhuan,indexchuzuan) in equip_choice[chuzhuanindex].list">
 									<view>
 										<image :src="chuzhuan.icon" class="pifuimg"></image>
 									</view>
 								</view>
+								</view>
+								<view class="witwo">{{description}}</view>
+								
 							</view>
 						</view>
 					</view>
 
 
-					<view>
-						<view>英雄关系</view>
-						<view class="bian">
-							<view>最佳搭档</view>
-							<view v-for="(partner_herost,indexpartner_hero) in partner_hero">
-								<view>{{partner_herost.name}}</view>
+					<view class="liu">
+						<view class="yxguanxi">英雄关系</view>
+						<view class="bianliu">
+							<view class="nane-yxyx">最佳搭档</view>
+							<view class="liu-there">
+							<view v-for="(partner_herost,indexpartner_hero) in partner_hero"  class="liusi">
+							
 								<view>
 									<image :src="partner_herost.icon" class="pifuimg" @click="zuijia(partner_herost.hero_id)"></image>
 								</view>
+									<view class="liu-text">{{partner_herost.name}}</view>
+							</view>
 							</view>
 						</view>
 
-						<view class="bian">
-							<view>压制英雄</view>
-							<view v-for="(restrained_herost,indexrestrained_hero) in restrained_hero">
-								<view>{{restrained_herost.name}}</view>
+						<view class="bianliu">
+							<view class="nane-yxyx">压制英雄</view>
+							<view class="liu-there">
+							<view v-for="(restrained_herost,indexrestrained_hero) in restrained_hero" class="liusi">
+						
 								<view>
 									<image :src="restrained_herost.icon" class="pifuimg" @click="yazhi(restrained_herost.hero_id)"></image>
 								</view>
+										<view class="liu-text">{{restrained_herost.name}}</view>
+							</view>
 							</view>
 						</view>
 
-						<view class="bian">
-							<view>被压制英雄</view>
-							<view v-for="(be_restrained_herost,indexbe_restrained_hero) in be_restrained_hero">
-								<view>{{be_restrained_herost.name}}</view>
+						<view class="bianliu">
+							<view class="nane-yxyx">被压制英雄</view>
+							
+							<view class="liu-there">
+							<view v-for="(be_restrained_herost,indexbe_restrained_hero) in be_restrained_hero"  class="liusi">
 								<view>
 									<image :src="be_restrained_herost.icon" class="pifuimg" @click="beiyazhi(be_restrained_herost.hero_id)"></image>
 								</view>
+								<view class="liu-text">{{be_restrained_herost.name}}</view>
 							</view>
+							</view>
+							
 						</view>
 
 					</view>
@@ -431,7 +435,7 @@
 	}
 
 	.bian {
-		/* border: 1px solid #007AFF; */
+		border: 1px solid #007AFF;
 		display: flex;
 	}
 	.pifuview{
@@ -440,6 +444,7 @@
 		color: #FFCCCC;
 		background-color: #F8F8F8;
 		border-radius: 10px 10px 0px 0px;
+		font-size: 25px;
 	}
 	.two{
 		margin-top: 1%;
@@ -448,6 +453,7 @@
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: 10px 10px 0px 0px;
+		background-color: #F8F8F8;
 	}
 	
 	.there{
@@ -457,18 +463,154 @@
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: 10px 10px 0px 0px;
+		background-color: #FFCCCC;
+		
 	}
 	.jinengtext{
 		border: 1px solid #007AFF;
-		color: #FFCCCC;
+		color: #FFFFFF;
 		padding-left: 2%;
+		font-size: 25px;
 	}
 	.jinenflex{
 		display: flex;
 		justify-content: space-around;
+		margin-top: 1%;
 	}
 	.duixianjiqiao{
 		border: 1px solid #3F536E;
 		margin-top: 1%;
+		color: 	#F5F5F5;
+	}
+	.jinengname{
+		border: 1px solid #4CD964;
+		margin-top: 1%;
+		color: #FA8072;
+		font-size: 20px;
+		padding-left: 2%;
+	}
+	.shanghai{
+		border: 1px solid #FFCCCC;
+		margin-top: 1%;
+		color: #CD5C5C;
+	}
+	.jineng{
+		border: 1px solid #007AFF;
+		margin-top: 1%;
+		color: 	#A52A2A;
+	}
+/* 	.jineng-img{
+		border: 1px solid #F3C258;
+		margin-top: 1%;
+	} */
+	.si{
+		margin-top: 1%;
+		border: 1px solid #F3C258;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 10px 10px 0px 0px;
+		background-color: 	#FFF0F5;
+	}
+	.sifuwendapei{
+		font-size: 25px;
+		color: #FFCCCC;
+		padding-left: 2%;
+	}
+	.bian1{
+		
+		border: 1px solid #F3C258;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		
+	}
+	.bian-view{
+		border: 1px solid #007AFF;
+		width: 30%;
+		margin: 1%;
+		text-align: center;
+	}
+	.fuwen-name{
+		color: 	#FF0000;
+	}
+	.fuwen-shuxin{
+		/* color: #87CEFA; */
+	}
+	.wu{
+		margin-top: 1%;
+		border: 1px solid #4CD964;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 10px 10px 0px 0px;
+		background-color: 	#F5F5F5;
+	}
+	.chuzhuantj{
+		font-size: 25px;
+		padding-left: 2%;
+		color: #FFFFFF;
+	}
+	.wuone{
+		margin-top: 1%;
+		display: flex;
+		justify-content: space-around;		margin-top: 1%;
+		border: 1px solid #007AFF;
+	}
+	.witwo{
+		border: 1px solid #DD524D;
+		margin-top: 1%;
+	}
+	.wu-for{
+		border: 1px solid #007AFF;
+		display: flex;
+		justify-content: space-around;
+		margin-top: 1%;
+	}
+	.wu-for image{
+		width: 40px;
+		height: 40px;
+			border-radius: 0px 0px 0px 0px;
+	}
+	.liu{
+		margin-top: 1%;
+		border: 1px solid #4CD964;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 10px 10px 0px 0px;
+		background-color: 	#F5F5F5;
+	}
+	.yxguanxi{
+	font-size: 25px;
+	padding-left: 2%;
+	color: #FFCCCC;
+	}
+	.bianliu{
+		border: 1px solid #2C405A;
+		margin-top: 1%;
+	}
+	.nane-yxyx{
+		font-size: 20px;
+		padding-left: 2%;
+		margin-top: 1%;
+	}
+	.liu-there{
+		border: 1px solid #007AFF;
+		display: flex;
+		justify-content: space-around;
+		margin-top: 1%;
+		/* background-color: ; */
+		margin-top: 1%;
+	}
+	.liusi{
+		/* border: 1px solid #007AFF; */
+		text-align: center;
+		background-color: #FFCCCC;
+		border-radius: 10px;
+		margin-top: 1%;
+	}
+	.liu-text{
+		color: #FFFFFF;
 	}
 </style>
