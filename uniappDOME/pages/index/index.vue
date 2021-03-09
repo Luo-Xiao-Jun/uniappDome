@@ -81,7 +81,7 @@
 						console.log("---------" + this.xq);
 						var textObj = JSON.stringify(this.xq);
 						uni.navigateTo({
-							url: "/pages/xingqin/xingqin?textObj=" + textObj
+							url: "/pages/xingqin/xingqin?textObj=" + textObj 
 						});
 					}
 				});
