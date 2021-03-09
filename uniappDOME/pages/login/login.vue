@@ -42,7 +42,7 @@
 				title: '加载中',
 				duration: 1000,
 				icon: 'loading'
-			}); 
+			});  
 		}, 
         methods: {
     diao(){
