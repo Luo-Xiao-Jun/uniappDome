@@ -26,11 +26,11 @@
 						<view class="pifuview">皮肤</view>
 						<scroll-view scroll-x="true" scroll-top="0" scroll-left="0" > 	
 											<view class="pifu">
-						<view v-for="(pifu,indexpifu) in pifus" class="pifu-view" @click="pifuitem(indexpifu)" >
-							<view class="imgaview">
-								<image :src="pifu.big_img" class="pifuimg" ></image>
+						<view v-for="(pifu,indexpifu) in pifus" class="pifu-view" @click="pifuitem(indexpifu)"   :class="(indexpifu == pifuindex) ? 'pifudongclass':''">
+							<view class="imgaview" >
+								<image :src="pifu.big_img" class="pifuimg" ></image> 
 							</view>
-							<view class="pifu-name">{{pifu.skin_name}}</view>
+							<view class="pifu-name" :class="(indexpifu == pifuindex) ? 'pifudongclass':''">{{pifu.skin_name}}</view>
 						</view>
 							</view>
 						</scroll-view >
@@ -39,9 +39,9 @@
 					<view class="there">
 						<view class="jinengtext">技能介绍</view>
 						<view class="jinenflex">
-						<view v-for="(jinengs,indexjineng) in jineng" @click="jinengclick(indexjineng)">
-							<view class="jineng-img">
-								<image :src="jinengs.icon" class="pifuimg"></image>
+						<view v-for="(jinengs,indexjineng) in jineng" @click="jinengclick(indexjineng)" >
+							<view class="jineng-img" :class="(indexjineng == jinengone) ? 'pifudongclass2':''">
+								<image :src="jinengs.icon" class="pifuimg1" ></image>
 							</view>
 						</view>
 						</view>
@@ -93,7 +93,7 @@
 						<view> 
 						
 						<view class="wuone">
-							<view v-for="(equip_choicest,indexequip_choice) in equip_choice">
+							<view v-for="(equip_choicest,indexequip_choice) in equip_choice" class="wuone-item" :class="(indexequip_choice == chuzhuanindex) ? 'pifudongclass3':''">
 								<view @click="chuzhuanclick(indexequip_choice)">{{equip_choicest.title}}</view>
                              </view>
 							</view>
@@ -303,6 +303,9 @@
 </script>
 
 <style>
+	page{
+		/* background-color: #F8F8F8; */
+	}
 	.itess {
 		margin-top: 3%;
 		width: 95%;
@@ -334,9 +337,10 @@
 		border-radius: 10px;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 1%;
+		margin-top: 3%;
 		position: relative;
 	}
+	
 .topimg{
 	width: 100%;
 	border-radius: 10px;
@@ -371,7 +375,8 @@
 			margin-left: auto;
 			margin-right: auto;
 			font-size: 8px;
-			margin-top: 1%;
+			margin-top: 2%;
+			margin-top: 2%;
 	}
 	.uni-product-image {
 		width: 87px;
@@ -406,18 +411,23 @@
  
 	.pifu-view {
 		/* width: 100%; */
-		height: 70px;
+		/* height: 70px; */
 		/* border: 1px solid #007AFF; */
 		margin:1%;
 		/* line-height: 50px; */
 		background-color: #FFCCCC;
-		border-radius: 10px 10px 0px 0px;
+		border-radius: 10px;
 	}
 .imgaview{
 	width: 100%;
 	height: 70px;
-	border-radius: 10px 10px 0px 0px;
+	border-radius: 10px;
 }
+.pifuimg1 {
+		width: 70px;
+		height: 70px;
+		border-radius: 50%;
+	}
 	.pifuimg {
 		width: 70px;
 		height: 70px;
@@ -431,7 +441,13 @@
 		/* border: 1px solid #007AFF; */
 			color: #FFFFFF;
 			background-color: #FFCCCC;
-			border-radius: 0px 0px 10px 10px;
+			/* border-radius: 0px 0px 10px 10px; */
+			border-radius: 10px;
+	}
+	.pifudongclass{
+			border: 0.5px solid #FFCCCC;
+			border-radius: 10px;
+			color: #9999CC;
 	}
 
 	.bian {
@@ -447,27 +463,36 @@
 		font-size: 25px;
 	}
 	.two{
-		margin-top: 1%;
+		margin-top: 3%;
 		width: 95%;
 		border: 1px solid #F8F8F8;
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: 10px 10px 0px 0px;
 		background-color: #F8F8F8;
+		box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
 	}
 	
+	.pifudongclass2{
+		width: 70px;
+		height: 70px;
+		/* border-radius: 50%; */
+		border: 2px solid #FFFFCC;
+		border-radius:50%;
+	}
 	.there{
-		border: 1px solid #DD524D;
-		margin-top: 1%;
+		/* border: 1px solid #DD524D; */
+		margin-top: 3%;
 		width: 95%;
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: 10px 10px 0px 0px;
 		background-color: #FFCCCC;
+		box-shadow:0px 15px 10px -15px #000;
 		
 	}
 	.jinengtext{
-		border: 1px solid #007AFF;
+		/* border: 1px solid #007AFF; */
 		color: #FFFFFF;
 		padding-left: 2%;
 		font-size: 25px;
@@ -478,24 +503,24 @@
 		margin-top: 1%;
 	}
 	.duixianjiqiao{
-		border: 1px solid #3F536E;
+		/* border: 1px solid #3F536E; */
 		margin-top: 1%;
 		color: 	#F5F5F5;
 	}
 	.jinengname{
-		border: 1px solid #4CD964;
+		/* border: 1px solid #4CD964; */
 		margin-top: 1%;
 		color: #FA8072;
 		font-size: 20px;
 		padding-left: 2%;
 	}
 	.shanghai{
-		border: 1px solid #FFCCCC;
+		/* border: 1px solid #FFCCCC; */
 		margin-top: 1%;
 		color: #CD5C5C;
 	}
 	.jineng{
-		border: 1px solid #007AFF;
+		/* border: 1px solid #007AFF; */
 		margin-top: 1%;
 		color: 	#A52A2A;
 	}
@@ -504,13 +529,14 @@
 		margin-top: 1%;
 	} */
 	.si{
-		margin-top: 1%;
-		border: 1px solid #F3C258;
+		margin-top: 3%;
+		/* border: 1px solid #F3C258; */
 		width: 95%;
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: 10px 10px 0px 0px;
 		background-color: 	#FFF0F5;
+			box-shadow:0px 15px 10px -15px #000;
 	}
 	.sifuwendapei{
 		font-size: 25px;
@@ -519,14 +545,15 @@
 	}
 	.bian1{
 		
-		border: 1px solid #F3C258;
+		/* border: 1px solid #F3C258; */
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
 		
 	}
+	
 	.bian-view{
-		border: 1px solid #007AFF;
+		/* border: 1px solid #007AFF; */
 		width: 30%;
 		margin: 1%;
 		text-align: center;
@@ -535,16 +562,18 @@
 		color: 	#FF0000;
 	}
 	.fuwen-shuxin{
-		/* color: #87CEFA; */
+		color: #9999CC;
 	}
 	.wu{
-		margin-top: 1%;
-		border: 1px solid #4CD964;
+		margin-top: 3%;
+		/* border: 1px solid #4CD964; */
 		width: 95%;
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: 10px 10px 0px 0px;
-		background-color: 	#F5F5F5;
+		    background-color: #FFCCCC;
+			box-shadow:0px 15px 10px -15px #000;
+		
 	}
 	.chuzhuantj{
 		font-size: 25px;
@@ -555,14 +584,23 @@
 		margin-top: 1%;
 		display: flex;
 		justify-content: space-around;		margin-top: 1%;
-		border: 1px solid #007AFF;
+	}
+	.wuone-item{
+		border: 1px solid #FFFFCC;
+		border-radius: 3px;
+	}
+	.pifudongclass3{
+		border: 2px solid #9999CC;
+		border-radius: 3px;
 	}
 	.witwo{
-		border: 1px solid #DD524D;
+		/* border: 1px solid #DD524D; */
 		margin-top: 1%;
+		color: #9999CC;
+		font-size: 10px;
 	}
 	.wu-for{
-		border: 1px solid #007AFF;
+		/* border: 1px solid #007AFF; */
 		display: flex;
 		justify-content: space-around;
 		margin-top: 1%;
@@ -570,16 +608,18 @@
 	.wu-for image{
 		width: 40px;
 		height: 40px;
-			border-radius: 0px 0px 0px 0px;
+		border-radius: 0px 0px 0px 0px;
 	}
 	.liu{
-		margin-top: 1%;
-		border: 1px solid #4CD964;
+		margin-top: 3%;
+		margin-bottom: 3%;
+		/* border: 1px solid #4CD964; */
 		width: 95%;
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: 10px 10px 0px 0px;
-		background-color: 	#F5F5F5;
+		background-color: #FFF0F5;
+		box-shadow:0px 15px 10px -15px #000;
 	}
 	.yxguanxi{
 	font-size: 25px;
@@ -587,7 +627,7 @@
 	color: #FFCCCC;
 	}
 	.bianliu{
-		border: 1px solid #2C405A;
+		/* border: 1px solid #2C405A; */
 		margin-top: 1%;
 	}
 	.nane-yxyx{
@@ -596,7 +636,7 @@
 		margin-top: 1%;
 	}
 	.liu-there{
-		border: 1px solid #007AFF;
+		/* border: 1px solid #007AFF; */
 		display: flex;
 		justify-content: space-around;
 		margin-top: 1%;
