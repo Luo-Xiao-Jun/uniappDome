@@ -43,7 +43,7 @@
 				duration: 1000,
 				icon: 'loading'
 			}); 
-		},
+		}, 
         methods: {
     diao(){
 		uni.request({
