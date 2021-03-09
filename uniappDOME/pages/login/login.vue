@@ -41,7 +41,7 @@
 			uni.showToast({
 				title: '加载中',
 				duration: 1000,
-				icon: 'loading'
+				icon: 'loading' 
 			});  
 		}, 
         methods: {
