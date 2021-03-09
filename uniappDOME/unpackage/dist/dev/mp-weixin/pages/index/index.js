@@ -163,7 +163,10 @@ var _default =
     return {
       yx: [],
       search: "",
-      xq: [] };
+      xq: [],
+      inputtext: "",
+      arrys: [],
+      indexxibiao: '' };
 
   },
   onLoad: function onLoad() {
@@ -195,17 +198,80 @@ var _default =
     console.log('页面触底了');
   },
   methods: {
-    diaoy: function diaoy() {var _this2 = this;
+    inputimg: function inputimg() {var _this2 = this;
+      // console.log("sdada"+this.inputtext);
+
+      var arrys = [];
+      this.arrys = [];
+      this.yx.forEach(function (p, u) {
+        arrys.push(p.name);
+      });
+      this.arrys = arrys;
+      console.log("====" + this.arrys);
+
+      var souchu = this.inputtext;
+      var meiy = '';
+      for (var i = 0; i < this.arrys.length; i++) {
+        if (this.arrys[i] == souchu) {
+          // souchu = this.arrys[i];
+          console.log("----" + souchu);
+          console.log("----" + i);
+          this.indexxibiao = i;
+          break;
+        } else {
+          this.indexxibiao = "-1";
+        }
+
+      }
+
+      console.log("das" + this.indexxibiao);
+      if (this.indexxibiao >= 0) {
+        var hero_id = this.yx[this.indexxibiao].hero_id;
+        uni.showToast({
+          title: '查找中！',
+          duration: 1000,
+          icon: 'loading' });
+
+
+        // setTimeout(function(){
+        uni.request({
+          url: 'http://gamehelper.gm825.com/wzry/hero/detail?hero_id=1&channel_id=90009a&app_id=h9044j&game_id=7622&game_name=%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80&vcode=12.0.3&version_code=1203&cuid=2654CC14D2D3894DBF5808264AE2DAD7&ovr=6.0.1&device=Xiaomi_MI+5&net_type=1&client_id=1Yfyt44QSqu7PcVdDduBYQ%3D%3D&info_ms=fBzJ%2BCu4ZDAtl4CyHuZ%2FJQ%3D%3D&info_ma=XshbgIgi0V1HxXTqixI%2BKbgXtNtOP0%2Fn1WZtMWRWj5o%3D&mno=0&info_la=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&info_ci=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&mcc=0&clientversion=&bssid=VY%2BeiuZRJ%2FwaXmoLLVUrMODX1ZTf%2F2dzsWn2AOEM0I4%3D&os_level=23&os_id=dc451556fc0eeadb&resolution=1080_1920&dpi=480&client_ip=192.168.0.198&pdunid=a83d20d8',
+          data: {
+            hero_id: hero_id },
+
+          success: function success(res) {
+            _this2.xq = res.data.info;
+            console.log("---------" + _this2.xq);
+            var textObj = JSON.stringify(_this2.xq);
+            uni.navigateTo({
+              url: "/pages/xingqin/xingqin?textObj=" + textObj });
+
+          } });
+
+
+        // },1000)
+      } else {
+        uni.showToast({
+          title: '没有找到',
+          duration: 1500,
+          icon: 'none' });
+
+      }
+
+
+
+    },
+    diaoy: function diaoy() {var _this3 = this;
       uni.request({
         url: 'http://gamehelper.gm825.com/wzry/hero/list?channel_id=90009a&app_id=h9044j&game_id=7622&game_name=%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80&vcode=12.0.3&version_code=1203&cuid=2654CC14D2D3894DBF5808264AE2DAD7&ovr=6.0.1&device=Xiaomi_MI+5&net_type=1&client_id=1Yfyt44QSqu7PcVdDduBYQ%3D%3D&info_ms=fBzJ%2BCu4ZDAtl4CyHuZ%2FJQ%3D%3D&info_ma=XshbgIgi0V1HxXTqixI%2BKbgXtNtOP0%2Fn1WZtMWRWj5o%3D&mno=0&info_la=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&info_ci=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&mcc=0&clientversion=&bssid=VY%2BeiuZRJ%2FwaXmoLLVUrMODX1ZTf%2F2dzsWn2AOEM0I4%3D&os_level=23&os_id=dc451556fc0eeadb&resolution=1080_1920&dpi=480&client_ip=192.168.0.198&pdunid=a83d20d8',
         success: function success(res) {
 
-          _this2.yx = res.data.list;
-          console.log("---------" + _this2.yx);
+          _this3.yx = res.data.list;
+          console.log("---------" + _this3.yx);
         } });
 
     },
-    dianji: function dianji(e) {var _this3 = this;
+    dianji: function dianji(e) {var _this4 = this;
       // console.log(e.currentTarget.dataset.id);   
       var hero_id = e.currentTarget.dataset.id;
       uni.request({
@@ -214,9 +280,9 @@ var _default =
           hero_id: hero_id },
 
         success: function success(res) {
-          _this3.xq = res.data.info;
-          console.log("---------" + _this3.xq);
-          var textObj = JSON.stringify(_this3.xq);
+          _this4.xq = res.data.info;
+          console.log("---------" + _this4.xq);
+          var textObj = JSON.stringify(_this4.xq);
           uni.navigateTo({
             url: "/pages/xingqin/xingqin?textObj=" + textObj });
 

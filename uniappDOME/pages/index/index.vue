@@ -2,9 +2,9 @@
 	<view>
 
 		<view class="input-view">
-			<view class="texts"><input type="text" placeholder="点击输入搜索英雄" confirm-type="search" placeholder-style="color:#FFCCCC;" /></view>
+			<view class="texts"><input type="text" placeholder="点击输入搜索英雄" v-model="inputtext" confirm-type="search" placeholder-style="color:#FFCCCC;" /></view>
 			<view class="texts1">
-				<image src="../../static/sou.png"></image>
+				<image src="../../static/sou.png" @click="inputimg"></image>
 			</view>
 		</view>
 
@@ -26,7 +26,10 @@
 			return {
 				yx: [],
 				search: "",
-				xq: []
+				xq: [],
+				inputtext:"",
+				arrys:[],
+				indexxibiao:''
 			}
 		},
 		onLoad() {
@@ -58,6 +61,69 @@
 			console.log('页面触底了');
 		},
 		methods: {
+			inputimg(){
+				// console.log("sdada"+this.inputtext);
+										
+										var arrys = []
+										this.arrys = [];
+										this.yx.forEach(function(p,u){
+										arrys.push(p.name);
+										})
+										this.arrys = arrys
+										console.log("===="+this.arrys);
+										 
+										var souchu = this.inputtext;
+										var meiy = '';
+										for(var i = 0;i < this.arrys.length; i++){
+											if(this.arrys[i] == souchu){
+													// souchu = this.arrys[i];
+													console.log("----"+souchu);
+													console.log("----"+i);
+											this.indexxibiao = i
+													break; 
+												}else{
+													this.indexxibiao = "-1";
+												}
+												
+										}
+		
+		console.log("das"+this.indexxibiao)
+									if(this.indexxibiao >= 0){
+											var hero_id = this.yx[this.indexxibiao].hero_id;
+										uni.showToast({
+											title: '查找中！',
+											duration: 1000,
+											icon: 'loading'
+										});
+										
+										// setTimeout(function(){
+											uni.request({
+												url: 'http://gamehelper.gm825.com/wzry/hero/detail?hero_id=1&channel_id=90009a&app_id=h9044j&game_id=7622&game_name=%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80&vcode=12.0.3&version_code=1203&cuid=2654CC14D2D3894DBF5808264AE2DAD7&ovr=6.0.1&device=Xiaomi_MI+5&net_type=1&client_id=1Yfyt44QSqu7PcVdDduBYQ%3D%3D&info_ms=fBzJ%2BCu4ZDAtl4CyHuZ%2FJQ%3D%3D&info_ma=XshbgIgi0V1HxXTqixI%2BKbgXtNtOP0%2Fn1WZtMWRWj5o%3D&mno=0&info_la=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&info_ci=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&mcc=0&clientversion=&bssid=VY%2BeiuZRJ%2FwaXmoLLVUrMODX1ZTf%2F2dzsWn2AOEM0I4%3D&os_level=23&os_id=dc451556fc0eeadb&resolution=1080_1920&dpi=480&client_ip=192.168.0.198&pdunid=a83d20d8',
+												data: {
+													hero_id: hero_id
+												},
+												success: (res) => {
+													this.xq = res.data.info;
+													console.log("---------" + this.xq);
+													var textObj = JSON.stringify(this.xq);
+													uni.navigateTo({
+														url: "/pages/xingqin/xingqin?textObj=" + textObj 
+													});
+												}
+											});
+											
+										// },1000)
+									}else{
+											uni.showToast({
+											    title: '没有找到',
+											    duration: 1500,
+												icon:'none'
+											});
+									}
+											
+									
+									
+			},
 			diaoy(){
 				uni.request({
 					url: 'http://gamehelper.gm825.com/wzry/hero/list?channel_id=90009a&app_id=h9044j&game_id=7622&game_name=%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80&vcode=12.0.3&version_code=1203&cuid=2654CC14D2D3894DBF5808264AE2DAD7&ovr=6.0.1&device=Xiaomi_MI+5&net_type=1&client_id=1Yfyt44QSqu7PcVdDduBYQ%3D%3D&info_ms=fBzJ%2BCu4ZDAtl4CyHuZ%2FJQ%3D%3D&info_ma=XshbgIgi0V1HxXTqixI%2BKbgXtNtOP0%2Fn1WZtMWRWj5o%3D&mno=0&info_la=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&info_ci=9AChHTMC3uW%2BfY8%2BCFhcFw%3D%3D&mcc=0&clientversion=&bssid=VY%2BeiuZRJ%2FwaXmoLLVUrMODX1ZTf%2F2dzsWn2AOEM0I4%3D&os_level=23&os_id=dc451556fc0eeadb&resolution=1080_1920&dpi=480&client_ip=192.168.0.198&pdunid=a83d20d8',

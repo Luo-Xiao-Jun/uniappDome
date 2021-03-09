@@ -1,13 +1,13 @@
 <template>
    <view>
    
-   	<view class="input-view">
+ <!--  	<view class="input-view">
    		<view class="texts"><input type="text" placeholder="点击输入搜索装备" confirm-type="search" placeholder-style="color:#FFCCCC;" /></view>
    		<view class="texts1">
    			<image src="../../static/sou.png"></image>
    		</view>
    	</view>
-   
+   -->
    	<view class="itess"> 
    		<view v-for="(item,index) in yx" class="image-view" :data-id="item.hero_id" @click="dianji">
    			<view>
@@ -34,6 +34,15 @@
 		},
 		onShow() {
 			this.diao();
+		},
+		//下拉
+		onPullDownRefresh() { 
+			this.diao();
+			uni.showToast({
+				title: '加载中',
+				duration: 1000,
+				icon: 'loading'
+			});
 		},
         methods: {
     diao(){

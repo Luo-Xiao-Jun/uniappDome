@@ -167,6 +167,15 @@ var _default =
   onShow: function onShow() {
     this.diao();
   },
+  //下拉
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.diao();
+    uni.showToast({
+      title: '加载中',
+      duration: 1000,
+      icon: 'loading' });
+
+  },
   methods: {
     diao: function diao() {var _this = this;
       uni.request({
